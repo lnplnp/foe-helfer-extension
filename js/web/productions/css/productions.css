@@ -767,3 +767,140 @@ input[id*="ProdPerTile"] {
 #ProductionsRatingBody:not(.showLimited) .limited span[data-callback_tt="Kits.InventoryTooltip"], #items-list th:nth-child(3)::before, #items-list th:nth-child(3)::after {
 	display: none;
 }
+
+/* Advice section styles */
+.advice-section {
+	width: 100%;
+	padding: 0;
+}
+
+.advice-controls {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	padding: 10px;
+	background: var(--black-50);
+	border-bottom: 1px solid var(--border-table-bottom);
+	margin-bottom: 10px;
+	flex-wrap: wrap;
+}
+
+.advice-controls label {
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.advice-controls button {
+	padding: 6px 12px;
+	background: var(--text-darker);
+	color: var(--beige);
+	border: 1px solid var(--border-table-bottom);
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.advice-controls button:hover {
+	background: var(--text-medium);
+	filter: brightness(1.1);
+}
+
+.advice-controls button.active {
+	background: var(--success);
+	color: var(--text-darker);
+	font-weight: bold;
+	border-color: var(--success);
+	box-shadow: 0 0 8px rgba(100, 200, 100, 0.5);
+}
+
+.advice-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 85%;
+	background: transparent;
+}
+
+.advice-table thead {
+	background: var(--black-50);
+	border-bottom: 2px solid var(--border-table-bottom);
+	font-weight: bold;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.advice-table thead th {
+	padding: 8px;
+	text-align: left;
+	border-right: 1px solid var(--border-table-bottom);
+	color: var(--sunflower);
+}
+
+.advice-table thead th:last-child {
+	border-right: none;
+}
+
+.advice-table tbody tr {
+	border-bottom: 1px solid var(--border-table-bottom);
+}
+
+.advice-table tbody tr:hover {
+	background: var(--table-bg-hover);
+}
+
+.advice-table tbody tr.inventory-priority {
+	background: var(--black-30);
+	font-weight: 500;
+}
+
+.advice-table tbody td {
+	padding: 8px;
+	border-right: 1px solid var(--border-table-bottom);
+	vertical-align: middle;
+}
+
+.advice-table tbody td:last-child {
+	border-right: none;
+}
+
+.advice-table tbody td.building-name {
+	font-weight: bold;
+	color: var(--sunflower);
+	white-space: nowrap;
+}
+
+.advice-table tbody td.location {
+	font-size: 80%;
+	color: var(--text-medium);
+	white-space: nowrap;
+}
+
+.advice-table tbody td.score {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	color: var(--limegreen);
+	font-weight: 500;
+}
+
+.advice-table tbody td.tile-count {
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+
+.advice-stats {
+	margin-top: 15px;
+	padding: 10px;
+	background: var(--black-50);
+	border: 1px solid var(--border-table-bottom);
+	border-radius: 3px;
+	font-size: 90%;
+}
+
+.advice-stats p {
+	margin: 5px 0;
+	color: var(--text-medium);
+}
+
+.advice-stats strong {
+	color: var(--sunflower);
+}
