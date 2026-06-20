@@ -204,12 +204,22 @@ function inject (loadBeta = false, extUrl = chrome.runtime.getURL(''), betaDate=
 			
 			scriptLoaded("primed", "vendor");
 			
-			// load scripts (one after the other)
+			// load scripts (core modules sequentially, then features in parallel)
 			const internalScriptsToLoad = await scriptListPromise;
 
-			for (let i = 0; i < internalScriptsToLoad.length; i++){
-				await promisedLoadCode(`${extUrl}js/web/${internalScriptsToLoad[i]}/js/${internalScriptsToLoad[i]}.js?v=${v}`, "internal");
+			// Separate core modules (prefixed with '_') from feature modules
+			const coreModules = internalScriptsToLoad.filter(s => s.startsWith('_'));
+			const featureModules = internalScriptsToLoad.filter(s => !s.startsWith('_'));
+
+			// Load core modules sequentially (they may have dependencies)
+			for (const script of coreModules) {
+				await promisedLoadCode(`${extUrl}js/web/${script}/js/${script}.js?v=${v}`, "internal");
 			}
+
+			// Load feature modules in parallel for performance
+			await Promise.all(featureModules.map(script =>
+				promisedLoadCode(`${extUrl}js/web/${script}/js/${script}.js?v=${v}`, "internal")
+			));
 					
 			scriptLoaded("primed", "internal");
 
